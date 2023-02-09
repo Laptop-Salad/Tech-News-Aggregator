@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Latest Tech News</title>
+
+    <style>
+        .article-radar {
+            background-color: #A7C7E7;
+        }
+
+        .article-radar:hover {
+            background-color: #FFFDD0;
+        }
+
+        .article-crunch {
+            background-color: #C1E1C1;
+        }
+
+        .article-crunch:hover {
+            background-color: #FFFDD0;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Latest Tech News</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDropddown" aria-controls="navbarDropddown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarDropddown">
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  Sort By
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/sort/newest">Newest</a></li>
+                  <li><a class="dropdown-item" href="/sort/title">Title (Ascending)</a></li>
+                  <li><a class="dropdown-item" href="/sort/publisher">Publisher (Ascending)</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    <br>
+
+    <div class="d-flex justify-content-center">
+        {% for dict_item in latest_news %}
+            {% if dict_item.publisher == "TechRadar"%}
+                <div class="article-radar container rounded-3 p-2 mb-2 mt-2">
+                    <a href={{ dict_item.link }} class="fs-2 fw-bold">{{ dict_item.title }}</a>
+
+                    <br>
+
+                    <span class="mr-1">{{ dict_item.publisher }} | </span>
+
+                    {% if dict_item.dt %}
+                        <span>Posted on <strong>{{ dict_item.day}}/{{ dict_item.month }}/{{ dict_item.year }}</strong> at <strong>{{ dict_item.hour }}:{{ dict_item.minute }}</strong></span>
+                    {% else %}
+                        <span>Posted on unknown time and date</span>
+                    {% endif %}
+                </div>
+             {% elif dict_item.publisher == "TechCrunch" %}
+                <div class="article-crunch container rounded-3 p-2 mb-2 mt-2">
+                    <a href={{ dict_item.link }} class="fs-2 fw-bold">{{ dict_item.title }}</a>
+
+                    <br>
+
+                    <span class="mr-1">{{ dict_item.publisher }} | </span>
+
+                    {% if dict_item.dt %}
+                        <span>Posted on <strong>{{ dict_item.day}}/{{ dict_item.month }}/{{ dict_item.year }}</strong> at <strong>{{ dict_item.hour }}:{{ dict_item.minute }}</strong></span>
+                    {% else %}
+                        <span>Posted on unknown time and date</span>
+                    {% endif %}
+                </div>
+            {% endif %}
+    </div>
+        {% endfor %}
+
+</body>
+</html>
