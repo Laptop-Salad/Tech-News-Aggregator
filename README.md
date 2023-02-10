@@ -1,4 +1,4 @@
-# Latest Tech News Content Aggregator
+# Latest Tech News Aggregator
 
 ![image](https://user-images.githubusercontent.com/80591698/217737440-1bf4aa19-9452-42e5-b8cc-4d6f223694ce.png)
 
