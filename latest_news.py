@@ -156,6 +156,10 @@ def index():
     latest_news = get_latest_news()
     return render_template("news_index.html", latest_news=latest_news)
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("404.html"), 404
+
 @app.route("/sort/newest")
 def sort_newest():
     # Sort latest_news by newest date (default)
